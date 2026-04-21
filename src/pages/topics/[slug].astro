@@ -2,6 +2,7 @@
 import Base from '@/layouts/Base.astro';
 import SourceCard from '@/components/SourceCard.astro';
 import { getActiveSources, getAllTopics } from '@/lib/sources';
+import { pathTo } from '@/lib/url';
 
 export async function getStaticPaths() {
   const topics = await getAllTopics();
@@ -26,15 +27,15 @@ const withAuth = sources.filter((s) => s.data.auth !== 'none');
   description={`${sources.length} curated sources for "${slug}" that LLMs can rely on instead of generic web search.`}
   canonicalPath={`/topics/${slug}`}
 >
-  <p><a href="/topics">← All topics</a></p>
+  <p><a href={pathTo('/topics')}>← All topics</a></p>
   <h1>#{slug}</h1>
   <p class="lede">
     {sources.length} curated {sources.length === 1 ? 'source' : 'sources'} for this topic
     — of which <strong>{noAuth.length}</strong> need no API key.
   </p>
   <p class="meta">
-    <span class="pill">JSON: <a href={`/topics/${slug}.json`}>/topics/{slug}.json</a></span>
-    <span class="pill ok">No-auth JSON: <a href="/no-auth.json">/no-auth.json</a></span>
+    <span class="pill">JSON: <a href={pathTo(`/topics/${slug}.json`)}>{pathTo(`/topics/${slug}.json`)}</a></span>
+    <span class="pill ok">No-auth JSON: <a href={pathTo('/no-auth.json')}>{pathTo('/no-auth.json')}</a></span>
   </p>
 
   {sources.length === 0 && (

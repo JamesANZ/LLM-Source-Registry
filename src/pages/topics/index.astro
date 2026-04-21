@@ -1,6 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getAllTopics } from '@/lib/sources';
+import { pathTo } from '@/lib/url';
 
 const topics = await getAllTopics();
 ---
@@ -15,7 +16,7 @@ const topics = await getAllTopics();
 
   <div class="topic-cloud">
     {topics.map(({ slug, count, noAuthCount }) => (
-      <a href={`/topics/${slug}`}>
+      <a href={pathTo(`/topics/${slug}`)}>
         #{slug}
         <span class="count">({count}{noAuthCount > 0 ? `, ${noAuthCount} no-auth` : ''})</span>
       </a>

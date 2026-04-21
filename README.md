@@ -81,10 +81,65 @@ Contributors can opt a source out of retirement with `never_retire: true`.
 
 ## Deployment
 
-The default deploy workflow publishes `dist/` to GitHub Pages on every push
-to `main`. Swap the workflow under `.github/workflows/deploy.yml` for
-Cloudflare Pages, Netlify, or any static host if preferred. Remember to set
-`site` in [astro.config.mjs](astro.config.mjs) to your production URL.
+### GitHub Pages (default, zero-config)
+
+The `.github/workflows/deploy.yml` workflow publishes `dist/` to GitHub
+Pages on every push to `main`. It uses
+[`actions/configure-pages@v5`](https://github.com/actions/configure-pages)
+to auto-detect the site origin and base path, then forwards them to
+`astro.config.mjs` via `SITE` and `BASE_PATH` env vars. No manual editing
+required whether the repo is named `<user>.github.io` (deployed to the
+root) or anything else (deployed to `/<repo>/`).
+
+#### REQUIRED one-time setup
+
+> [!IMPORTANT]
+> By default GitHub Pages runs Jekyll against your repo's source files,
+> which will fail on Astro's `.astro` files with an error like
+> `Invalid YAML front matter in src/pages/topics/index.astro`.
+> **You must change the Pages source to "GitHub Actions"** before the
+> first deploy.
+
+1. Push this project to GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment → Source**, pick **GitHub Actions**
+   (not "Deploy from a branch").
+4. Go to the **Actions** tab, find "Deploy to GitHub Pages", and click
+   **Run workflow** once (or push a new commit to `main`).
+5. (Optional) Add a `CNAME` file under `public/` to use a custom domain.
+
+Both `/.nojekyll` and `public/.nojekyll` are included as belt-and-braces,
+so even if someone switches Pages back to branch mode, Jekyll will skip
+over the source files instead of erroring.
+
+#### Troubleshooting
+
+- `YAML Exception reading .../Base.astro` in the Actions log →
+  Pages source is still "Deploy from a branch". Follow step 3 above.
+- 404s on sub-pages like `/topics/weather` → make sure Pages source is
+  "GitHub Actions", not branch. Branch mode serves the raw repo, not
+  the built `dist/`.
+- Assets under `_astro/` 404 → ensure `.nojekyll` wasn't deleted from
+  the repo root or from `public/`.
+
+### Other hosts
+
+For Cloudflare Pages, Netlify, Vercel, or anywhere else:
+
+- Build command: `npm run build`
+- Output directory: `dist`
+- Optional env vars:
+  - `SITE=https://your-domain.example` (origin, no trailing slash)
+  - `BASE_PATH=/` (or `/subpath/` if mounting under a prefix)
+
+### Local preview with a simulated base path
+
+```bash
+BASE_PATH=/llm-source-registry SITE=https://example.github.io npm run build
+npx astro preview
+```
+
+All internal links should point at `/llm-source-registry/...`.
 
 ## License
 

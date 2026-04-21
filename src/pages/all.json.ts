@@ -5,6 +5,7 @@ import {
   getAllTopics,
   serializeSource,
 } from "@/lib/sources";
+import { pathTo } from "@/lib/url";
 
 export const GET: APIRoute = async () => {
   const sources = await getActiveSources();
@@ -15,7 +16,7 @@ export const GET: APIRoute = async () => {
     source_count: sources.length,
     topic_count: topics.length,
     auth_breakdown: authBreakdown(sources),
-    no_auth_endpoint: "/no-auth.json",
+    no_auth_endpoint: pathTo("/no-auth.json"),
     topics: topics.map((t) => t.slug),
     sources: sources.map(serializeSource),
   };

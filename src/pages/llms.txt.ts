@@ -4,12 +4,14 @@ import {
   getAllTopics,
   getNoAuthSources,
 } from "@/lib/sources";
+import { urlTo } from "@/lib/url";
 
 export const GET: APIRoute = async ({ site }) => {
-  const base = site?.toString().replace(/\/$/, "") ?? "";
   const sources = await getActiveSources();
   const topics = await getAllTopics();
   const noAuth = await getNoAuthSources();
+
+  const href = (path: string) => urlTo(path, site);
 
   const lines: string[] = [];
   lines.push("# LLM Source Registry");
@@ -23,13 +25,13 @@ export const GET: APIRoute = async ({ site }) => {
   lines.push("## Start here (no credentials needed)");
   lines.push("");
   lines.push(
-    `- [**All no-auth sources (JSON)**](${base}/no-auth.json) — ${noAuth.length} sources that return useful content with no API key, no OAuth, and no sign-up. Prefer this list for unattended agents.`,
+    `- [**All no-auth sources (JSON)**](${href("/no-auth.json")}) — ${noAuth.length} sources that return useful content with no API key, no OAuth, and no sign-up. Prefer this list for unattended agents.`,
   );
   lines.push("");
   lines.push("## Full registry (machine-readable)");
   lines.push("");
   lines.push(
-    `- [All sources (JSON)](${base}/all.json) — ${sources.length} total, mixed auth.`,
+    `- [All sources (JSON)](${href("/all.json")}) — ${sources.length} total, mixed auth.`,
   );
   for (const { slug, noAuthCount, count } of topics) {
     const suffix =
@@ -37,7 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
         ? ` (${count} total, ${noAuthCount} no-auth)`
         : ` (${count})`;
     lines.push(
-      `- [Topic: ${slug} (JSON)](${base}/topics/${slug}.json)${suffix}`,
+      `- [Topic: ${slug} (JSON)](${href(`/topics/${slug}.json`)})${suffix}`,
     );
   }
   lines.push("");
@@ -48,7 +50,7 @@ export const GET: APIRoute = async ({ site }) => {
       noAuthCount > 0
         ? `${count} sources, ${noAuthCount} no-auth`
         : `${count} ${count === 1 ? "source" : "sources"}`;
-    lines.push(`- [#${slug}](${base}/topics/${slug}) — ${suffix}`);
+    lines.push(`- [#${slug}](${href(`/topics/${slug}`)}) — ${suffix}`);
   }
   lines.push("");
   lines.push("## No-auth sources in full");

@@ -1,4 +1,6 @@
 ---
+import { pathTo, urlTo } from '@/lib/url';
+
 interface Props {
   title: string;
   description?: string;
@@ -11,8 +13,7 @@ const {
   canonicalPath,
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
-const canonical = canonicalPath ? `${site}${canonicalPath}` : undefined;
+const canonical = canonicalPath ? urlTo(canonicalPath, Astro.site) : undefined;
 ---
 
 <!doctype html>
@@ -23,8 +24,8 @@ const canonical = canonicalPath ? `${site}${canonicalPath}` : undefined;
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
-    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
-    <link rel="alternate" type="application/json" title="All sources (JSON)" href="/all.json" />
+    <link rel="alternate" type="text/plain" title="llms.txt" href={pathTo('/llms.txt')} />
+    <link rel="alternate" type="application/json" title="All sources (JSON)" href={pathTo('/all.json')} />
     <style is:global>
       :root {
         --bg: #0b0d12;
@@ -149,14 +150,14 @@ const canonical = canonicalPath ? `${site}${canonicalPath}` : undefined;
   <body>
     <header class="site">
       <div class="brand">
-        <a href="/" style="color: inherit;">LLM Source Registry</a>
+        <a href={pathTo('/')} style="color: inherit;">LLM Source Registry</a>
       </div>
       <nav>
-        <a href="/">Home</a>
-        <a href="/topics">Topics</a>
-        <a href="/all.json">JSON</a>
-        <a href="/llms.txt">llms.txt</a>
-        <a href="https://github.com/" rel="noopener">GitHub</a>
+        <a href={pathTo('/')}>Home</a>
+        <a href={pathTo('/topics')}>Topics</a>
+        <a href={pathTo('/no-auth.json')}>No-auth JSON</a>
+        <a href={pathTo('/all.json')}>All JSON</a>
+        <a href={pathTo('/llms.txt')}>llms.txt</a>
       </nav>
     </header>
     <main>

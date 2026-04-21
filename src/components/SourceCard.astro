@@ -1,6 +1,7 @@
 ---
 import type { SourceEntry } from '@/lib/sources';
 import { authLabel, authPillClass, humanizeType, statusPillClass } from '@/lib/sources';
+import { pathTo } from '@/lib/url';
 
 interface Props {
   source: SourceEntry;
@@ -58,7 +59,7 @@ const lastChecked = data.verification?.last_checked;
 
   <div class="meta" style="margin-top: 0.75rem;">
     {data.topics.map((t) => (
-      <a class="pill" href={`/topics/${t}`}>#{t}</a>
+      <a class="pill" href={pathTo(`/topics/${t}`)}>#{t}</a>
     ))}
   </div>
 </article>

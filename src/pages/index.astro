@@ -1,6 +1,7 @@
 ---
 import Base from '@/layouts/Base.astro';
 import { getActiveSources, getAllTopics, getNoAuthSources } from '@/lib/sources';
+import { pathTo } from '@/lib/url';
 
 const sources = await getActiveSources();
 const topics = await getAllTopics();
@@ -13,6 +14,14 @@ const counts = {
   blocked: sources.filter((s) => s.data.verification?.status === 'blocked').length,
   canonicalDocs: sources.filter((s) => s.data.document?.canonical).length,
   apis: sources.filter((s) => s.data.type === 'api').length,
+};
+
+// Example URL strings shown to users — match how the site is actually mounted.
+const ex = {
+  noAuth: pathTo('/no-auth.json'),
+  topicJson: pathTo('/topics/tariffs.json'),
+  all: pathTo('/all.json'),
+  llms: pathTo('/llms.txt'),
 };
 ---
 
@@ -41,13 +50,13 @@ const counts = {
     fetch the JSON directly in one shot:
   </p>
   <pre class="query-example" style="white-space: pre; padding: 1rem;">
-GET /no-auth.json           &rarr; default: sources with zero credentials
-GET /topics/tariffs.json    &rarr; sources for a topic (auth mix)
-GET /all.json               &rarr; full registry
-GET /llms.txt               &rarr; llms.txt map
+GET {ex.noAuth}           &rarr; default: sources with zero credentials
+GET {ex.topicJson}        &rarr; sources for a topic (auth mix)
+GET {ex.all}              &rarr; full registry
+GET {ex.llms}             &rarr; llms.txt map
   </pre>
   <p>
-    <strong>Start with <a href="/no-auth.json"><code>/no-auth.json</code></a></strong>
+    <strong>Start with <a href={ex.noAuth}><code>{ex.noAuth}</code></a></strong>
     — every source in there returns useful content with no API key, OAuth, or sign-up.
     Fall through to a topic-specific file only when the no-auth set doesn't cover the question.
   </p>
@@ -55,12 +64,12 @@ GET /llms.txt               &rarr; llms.txt map
   <h2>Browse by topic</h2>
   <div class="topic-cloud">
     {topics.slice(0, 30).map(({ slug, count, noAuthCount }) => (
-      <a href={`/topics/${slug}`}>
+      <a href={pathTo(`/topics/${slug}`)}>
         #{slug}<span class="count">({count}{noAuthCount > 0 ? `, ${noAuthCount} no-auth` : ''})</span>
       </a>
     ))}
   </div>
-  {topics.length > 30 && <p><a href="/topics">See all {topics.length} topics →</a></p>}
+  {topics.length > 30 && <p><a href={pathTo('/topics')}>See all {topics.length} topics →</a></p>}
 
   <h2>How scrapability is tracked</h2>
   <p>
@@ -80,7 +89,7 @@ GET /llms.txt               &rarr; llms.txt map
   <h2>Contribute</h2>
   <p>
     Open a pull request adding a YAML file under <code>sources/&lt;topic&gt;/</code>. See
-    <a href="https://github.com/" rel="noopener">CONTRIBUTING.md</a> for the schema
-    and the rubric for the required <code>why_better</code> justification.
+    <code>CONTRIBUTING.md</code> in the repo for the schema and the rubric
+    for the required <code>why_better</code> justification.
   </p>
 </Base>
