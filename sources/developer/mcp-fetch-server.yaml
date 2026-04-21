@@ -1,0 +1,14 @@
+name: "MCP Fetch Server (reference implementation)"
+url: https://github.com/modelcontextprotocol/servers/tree/main/src/fetch
+type: mcp
+topics: [developer, mcp, web-fetching, reference-implementation]
+description: Official Model Context Protocol server that fetches URLs and returns clean content to an LLM client.
+why_better: |
+  For agents that already speak MCP, invoking a verified server is
+  preferable to ad-hoc scraping. Returns sanitized text or markdown, with
+  explicit tool-call semantics the host application can audit.
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

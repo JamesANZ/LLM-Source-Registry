@@ -1,0 +1,27 @@
+{
+  "name": "llm-source-registry",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Open-source, community-curated registry of LLM-friendly data sources with automated scrapability verification.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "verify": "tsx scripts/verify-scrapability.ts",
+    "retire": "tsx scripts/retire-failing.ts",
+    "validate": "tsx scripts/validate-sources.ts"
+  },
+  "dependencies": {
+    "astro": "^5.1.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "yaml": "^2.6.0"
+  }
+}

@@ -1,0 +1,64 @@
+---
+import type { SourceEntry } from '@/lib/sources';
+import { authLabel, authPillClass, humanizeType, statusPillClass } from '@/lib/sources';
+
+interface Props {
+  source: SourceEntry;
+}
+
+const { source } = Astro.props;
+const { data } = source;
+const status = data.verification?.status ?? 'unknown';
+const lastChecked = data.verification?.last_checked;
+---
+
+<article class="card" id={source.id}>
+  <h3>
+    <a href={data.url} rel="noopener">{data.name}</a>
+  </h3>
+  <div class="meta">
+    <span class="pill">{humanizeType(data.type)}</span>
+    <span class={`pill ${statusPillClass(status)}`}>{status}</span>
+    <span class={`pill ${authPillClass(data.auth)}`}>{authLabel(data.auth)}</span>
+    {data.document?.canonical && <span class="pill ok">canonical</span>}
+    {data.never_retire && <span class="pill">pinned</span>}
+    {lastChecked && (
+      <span>
+        checked {new Date(lastChecked).toISOString().slice(0, 10)}
+      </span>
+    )}
+  </div>
+
+  <p>{data.description}</p>
+
+  <div class="why">
+    <strong>Why this beats web search:</strong> {data.why_better}
+  </div>
+
+  {data.document && (
+    <div class="meta" style="margin-top: 0.5rem;">
+      <span class="pill">{data.document.document_type}</span>
+      <span class="pill">{data.document.publisher}</span>
+      {data.document.jurisdiction && <span class="pill">{data.document.jurisdiction}</span>}
+      {data.document.issued && (
+        <span class="pill">issued {new Date(data.document.issued).toISOString().slice(0, 10)}</span>
+      )}
+      {data.document.pages && <span class="pill">{data.document.pages} pp</span>}
+    </div>
+  )}
+
+  {data.query_examples && data.query_examples.length > 0 && (
+    <div style="margin-top: 0.75rem;">
+      <div style="font-size: 0.8rem; color: var(--fg-dim); margin-bottom: 0.25rem;">
+        Example queries:
+      </div>
+      {data.query_examples.map((q) => <code class="query-example">{q}</code>)}
+    </div>
+  )}
+
+  <div class="meta" style="margin-top: 0.75rem;">
+    {data.topics.map((t) => (
+      <a class="pill" href={`/topics/${t}`}>#{t}</a>
+    ))}
+  </div>
+</article>

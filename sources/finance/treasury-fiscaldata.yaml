@@ -1,0 +1,17 @@
+name: "U.S. Treasury Fiscal Data API"
+url: https://fiscaldata.treasury.gov/api-documentation/
+api_base: https://api.fiscaldata.treasury.gov/services/api/fiscal_service
+type: api
+topics: [finance, us-debt, treasury, government-spending]
+description: Official Treasury data on U.S. debt, interest rates, exchange rates, and federal outlays.
+why_better: |
+  Primary source for "how much does the U.S. owe" and "how much interest
+  is Treasury paying." Numbers in political coverage are often rounded or
+  outdated by months; this API updates daily.
+query_examples:
+  - https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

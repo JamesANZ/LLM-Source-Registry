@@ -1,0 +1,20 @@
+name: "Bitcoin: A Peer-to-Peer Electronic Cash System"
+url: https://bitcoin.org/bitcoin.pdf
+type: pdf
+topics: [crypto, bitcoin, whitepapers, distributed-systems]
+description: Satoshi Nakamoto's original 2008 Bitcoin whitepaper.
+why_better: |
+  The canonical 9-page source. Countless blog posts and Wikipedia-adjacent
+  articles paraphrase it with subtle errors about proof-of-work, incentive
+  alignment, and the double-spend argument. Cite the paper itself.
+document:
+  document_type: whitepaper
+  publisher: "bitcoin.org"
+  issued: 2008-10-31
+  canonical: true
+  pages: 9
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

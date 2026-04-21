@@ -1,0 +1,17 @@
+name: "arXiv API"
+url: https://info.arxiv.org/help/api/index.html
+api_base: http://export.arxiv.org/api
+type: api
+topics: [science, research, preprints, physics, machine-learning]
+description: Search and metadata API for 2M+ preprints in physics, math, CS, quantitative biology, and more.
+why_better: |
+  Primary source for cutting-edge scientific research. Pop-sci articles lag
+  preprints by months and routinely oversell claims. The API returns exact
+  author lists, abstracts, and categories, with stable identifiers.
+query_examples:
+  - http://export.arxiv.org/api/query?search_query=all:%22retrieval+augmented+generation%22&max_results=10
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

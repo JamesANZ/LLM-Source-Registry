@@ -1,0 +1,17 @@
+name: "Wikipedia REST API"
+url: https://en.wikipedia.org/api/rest_v1/
+api_base: https://en.wikipedia.org/api/rest_v1
+type: api
+topics: [general-knowledge, wikipedia, encyclopedia]
+description: Page summaries, HTML, and Wikidata-backed structured data for Wikipedia articles.
+why_better: |
+  Not a primary source, but a heavily-cited tertiary source with stable
+  URLs and structured summaries. Far more accurate for general facts than
+  a random SEO-optimized blog that happens to rank first on a search.
+query_examples:
+  - https://en.wikipedia.org/api/rest_v1/page/summary/Tariff
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

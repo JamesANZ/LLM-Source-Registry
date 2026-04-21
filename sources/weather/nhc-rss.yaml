@@ -1,0 +1,14 @@
+name: "NOAA National Hurricane Center RSS"
+url: https://www.nhc.noaa.gov/index-at.xml
+type: rss
+topics: [weather, hurricanes, atlantic-basin, noaa]
+description: Official Atlantic basin hurricane advisories, public advisories, and forecast discussions.
+why_better: |
+  Primary source for tropical cyclone advisories. News aggregators introduce
+  delay and sometimes misreport intensity categories; the RSS feed gives
+  you the exact NHC text the moment it's issued.
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

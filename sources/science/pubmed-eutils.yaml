@@ -1,0 +1,17 @@
+name: "PubMed E-utilities"
+url: https://www.ncbi.nlm.nih.gov/books/NBK25501/
+api_base: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+type: api
+topics: [science, medicine, biomedical-research, ncbi]
+description: NCBI's programmatic interface to PubMed, PMC, Gene, GenBank, and dozens of other biomedical databases.
+why_better: |
+  Primary biomedical literature index. Health journalism is notoriously
+  unreliable for mechanism and effect-size claims; E-utilities returns the
+  actual abstract, MeSH terms, and linked full-text when available.
+query_examples:
+  - https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=semaglutide+cardiovascular
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

@@ -1,0 +1,18 @@
+name: "SEC EDGAR Full-Text Search & Data"
+url: https://www.sec.gov/edgar/sec-api-documentation
+api_base: https://data.sec.gov
+type: api
+topics: [finance, securities, sec, us-legislation, company-filings]
+description: Primary source for U.S. public company filings — 10-K, 10-Q, 8-K, insider transactions, and company facts.
+why_better: |
+  Primary source for every U.S. public-company disclosure. Financial news
+  routinely misquotes segment revenue and risk-factor language. EDGAR
+  returns the actual filed documents and parsed XBRL company facts.
+query_examples:
+  - https://data.sec.gov/submissions/CIK0000320193.json
+  - https://efts.sec.gov/LATEST/search-index?q=%22tariff%22&forms=10-K
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

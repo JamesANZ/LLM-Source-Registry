@@ -1,0 +1,169 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title,
+  description = 'Community-curated registry of LLM-friendly data sources with automated scrapability verification.',
+  canonicalPath,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonical = canonicalPath ? `${site}${canonicalPath}` : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    <link rel="alternate" type="application/json" title="All sources (JSON)" href="/all.json" />
+    <style is:global>
+      :root {
+        --bg: #0b0d12;
+        --bg-soft: #13161d;
+        --fg: #e6e9ef;
+        --fg-dim: #9aa3b2;
+        --accent: #7cc4ff;
+        --accent-soft: #1a2838;
+        --ok: #4ade80;
+        --warn: #fbbf24;
+        --bad: #f87171;
+        --border: #222834;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #fafafa;
+          --bg-soft: #ffffff;
+          --fg: #1a1d24;
+          --fg-dim: #5a6273;
+          --accent: #0369a1;
+          --accent-soft: #e0f2fe;
+          --ok: #16a34a;
+          --warn: #ca8a04;
+          --bad: #dc2626;
+          --border: #e4e7ec;
+        }
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      code, pre { font-family: var(--mono); }
+      main { max-width: 1040px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+      header.site {
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      header.site .brand {
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: -0.01em;
+      }
+      header.site nav { display: flex; gap: 1.25rem; font-size: 0.92rem; }
+      header.site nav a { color: var(--fg-dim); }
+      header.site nav a:hover { color: var(--fg); }
+      footer.site {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 1.25rem;
+        color: var(--fg-dim);
+        font-size: 0.88rem;
+        text-align: center;
+      }
+      h1 { font-size: 2.1rem; letter-spacing: -0.02em; margin: 0 0 0.5rem; }
+      h2 { font-size: 1.35rem; letter-spacing: -0.01em; margin: 2rem 0 0.75rem; }
+      h3 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; }
+      .lede { color: var(--fg-dim); font-size: 1.08rem; max-width: 62ch; }
+      .pill {
+        display: inline-block;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        border: 1px solid var(--border);
+        background: var(--bg-soft);
+        color: var(--fg-dim);
+      }
+      .pill.ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 30%, var(--border)); }
+      .pill.warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, var(--border)); }
+      .pill.bad { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 30%, var(--border)); }
+      .card {
+        border: 1px solid var(--border);
+        background: var(--bg-soft);
+        border-radius: 10px;
+        padding: 1rem 1.1rem;
+        margin: 0.75rem 0;
+      }
+      .card h3 { margin-top: 0; }
+      .meta { color: var(--fg-dim); font-size: 0.85rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
+      .why {
+        background: var(--accent-soft);
+        border-left: 3px solid var(--accent);
+        padding: 0.6rem 0.85rem;
+        border-radius: 0 6px 6px 0;
+        margin: 0.6rem 0;
+        font-size: 0.93rem;
+      }
+      .query-example {
+        display: block;
+        padding: 0.45rem 0.6rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        font-size: 0.8rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin: 0.25rem 0;
+      }
+      .topic-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.75rem 0 1.5rem; }
+      .topic-cloud a {
+        padding: 0.3rem 0.7rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--bg-soft);
+        font-size: 0.85rem;
+        color: var(--fg);
+      }
+      .topic-cloud a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+      .count { color: var(--fg-dim); font-size: 0.8rem; margin-left: 0.25rem; }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="brand">
+        <a href="/" style="color: inherit;">LLM Source Registry</a>
+      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/topics">Topics</a>
+        <a href="/all.json">JSON</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="https://github.com/" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site">
+      Open source. PRs welcome. Scrapability status updated nightly.
+    </footer>
+  </body>
+</html>

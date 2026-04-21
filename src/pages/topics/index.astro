@@ -1,0 +1,24 @@
+---
+import Base from '@/layouts/Base.astro';
+import { getAllTopics } from '@/lib/sources';
+
+const topics = await getAllTopics();
+---
+
+<Base title="All topics — LLM Source Registry" canonicalPath="/topics">
+  <h1>All topics</h1>
+  <p class="lede">
+    Each topic has its own pre-rendered HTML page and JSON endpoint.
+    The number in parentheses is total sources; the "no-auth" count is
+    sources that work with no API key.
+  </p>
+
+  <div class="topic-cloud">
+    {topics.map(({ slug, count, noAuthCount }) => (
+      <a href={`/topics/${slug}`}>
+        #{slug}
+        <span class="count">({count}{noAuthCount > 0 ? `, ${noAuthCount} no-auth` : ''})</span>
+      </a>
+    ))}
+  </div>
+</Base>

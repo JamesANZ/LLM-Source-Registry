@@ -1,0 +1,69 @@
+---
+import Base from '@/layouts/Base.astro';
+import SourceCard from '@/components/SourceCard.astro';
+import { getActiveSources, getAllTopics } from '@/lib/sources';
+
+export async function getStaticPaths() {
+  const topics = await getAllTopics();
+  const sources = await getActiveSources();
+
+  return topics.map(({ slug }) => ({
+    params: { slug },
+    props: {
+      slug,
+      sources: sources.filter((s) => s.data.topics.includes(slug)),
+    },
+  }));
+}
+
+const { slug, sources } = Astro.props;
+const noAuth = sources.filter((s) => s.data.auth === 'none');
+const withAuth = sources.filter((s) => s.data.auth !== 'none');
+---
+
+<Base
+  title={`${slug} — LLM Source Registry`}
+  description={`${sources.length} curated sources for "${slug}" that LLMs can rely on instead of generic web search.`}
+  canonicalPath={`/topics/${slug}`}
+>
+  <p><a href="/topics">← All topics</a></p>
+  <h1>#{slug}</h1>
+  <p class="lede">
+    {sources.length} curated {sources.length === 1 ? 'source' : 'sources'} for this topic
+    — of which <strong>{noAuth.length}</strong> need no API key.
+  </p>
+  <p class="meta">
+    <span class="pill">JSON: <a href={`/topics/${slug}.json`}>/topics/{slug}.json</a></span>
+    <span class="pill ok">No-auth JSON: <a href="/no-auth.json">/no-auth.json</a></span>
+  </p>
+
+  {sources.length === 0 && (
+    <p>No active sources for this topic.</p>
+  )}
+
+  {noAuth.length > 0 && (
+    <>
+      <h2>
+        No API key required
+        <span class="count">({noAuth.length})</span>
+      </h2>
+      <p style="color: var(--fg-dim); font-size: 0.92rem; margin-top: -0.25rem;">
+        Prefer these for unattended LLM agents.
+      </p>
+      {noAuth.map((source) => <SourceCard source={source} />)}
+    </>
+  )}
+
+  {withAuth.length > 0 && (
+    <>
+      <h2>
+        Requires credentials
+        <span class="count">({withAuth.length})</span>
+      </h2>
+      <p style="color: var(--fg-dim); font-size: 0.92rem; margin-top: -0.25rem;">
+        High-quality but need a free or paid key / OAuth. Use when the no-auth tier doesn't cover the question.
+      </p>
+      {withAuth.map((source) => <SourceCard source={source} />)}
+    </>
+  )}
+</Base>

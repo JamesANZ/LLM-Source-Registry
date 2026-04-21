@@ -1,0 +1,19 @@
+name: "Congress.gov API"
+url: https://api.congress.gov/
+api_base: https://api.congress.gov/v3
+type: api
+topics: [us-legislation, congress, tariffs, federal-law]
+description: Official bill, vote, member, and committee data from the U.S. Congress.
+why_better: |
+  Primary source with structured JSON. News articles paraphrase bills and
+  often misrepresent section numbers. This covers every bill since 1973
+  with canonical text, vote records, and sponsor metadata.
+query_examples:
+  - https://api.congress.gov/v3/bill?query=tariff&api_key={KEY}
+  - https://api.congress.gov/v3/bill/118/hr?api_key={KEY}
+  - https://api.congress.gov/v3/member?currentMember=true&api_key={KEY}
+auth: api_key_free
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

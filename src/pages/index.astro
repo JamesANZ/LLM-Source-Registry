@@ -1,0 +1,86 @@
+---
+import Base from '@/layouts/Base.astro';
+import { getActiveSources, getAllTopics, getNoAuthSources } from '@/lib/sources';
+
+const sources = await getActiveSources();
+const topics = await getAllTopics();
+const noAuth = await getNoAuthSources();
+
+const counts = {
+  total: sources.length,
+  noAuth: noAuth.length,
+  ok: sources.filter((s) => s.data.verification?.status === 'ok').length,
+  blocked: sources.filter((s) => s.data.verification?.status === 'blocked').length,
+  canonicalDocs: sources.filter((s) => s.data.document?.canonical).length,
+  apis: sources.filter((s) => s.data.type === 'api').length,
+};
+---
+
+<Base title="LLM Source Registry" canonicalPath="/">
+  <h1>Data sources your LLM can trust</h1>
+  <p class="lede">
+    A community-curated directory of primary-source APIs, datasets, and
+    canonical documents that LLMs should prefer over generic web search.
+    Every entry carries an editorial justification and a nightly-verified
+    scrapability status.
+  </p>
+
+  <div class="meta" style="margin: 1rem 0 2rem;">
+    <span class="pill">{counts.total} sources</span>
+    <span class="pill ok">{counts.noAuth} no-auth</span>
+    <span class="pill">{topics.length} topics</span>
+    <span class="pill ok">{counts.ok} verified ok</span>
+    {counts.blocked > 0 && <span class="pill bad">{counts.blocked} blocked</span>}
+    <span class="pill">{counts.apis} APIs</span>
+    <span class="pill">{counts.canonicalDocs} canonical docs</span>
+  </div>
+
+  <h2>Using this from an LLM</h2>
+  <p>
+    Every topic page is pre-rendered as both HTML and JSON. An agent can
+    fetch the JSON directly in one shot:
+  </p>
+  <pre class="query-example" style="white-space: pre; padding: 1rem;">
+GET /no-auth.json           &rarr; default: sources with zero credentials
+GET /topics/tariffs.json    &rarr; sources for a topic (auth mix)
+GET /all.json               &rarr; full registry
+GET /llms.txt               &rarr; llms.txt map
+  </pre>
+  <p>
+    <strong>Start with <a href="/no-auth.json"><code>/no-auth.json</code></a></strong>
+    — every source in there returns useful content with no API key, OAuth, or sign-up.
+    Fall through to a topic-specific file only when the no-auth set doesn't cover the question.
+  </p>
+
+  <h2>Browse by topic</h2>
+  <div class="topic-cloud">
+    {topics.slice(0, 30).map(({ slug, count, noAuthCount }) => (
+      <a href={`/topics/${slug}`}>
+        #{slug}<span class="count">({count}{noAuthCount > 0 ? `, ${noAuthCount} no-auth` : ''})</span>
+      </a>
+    ))}
+  </div>
+  {topics.length > 30 && <p><a href="/topics">See all {topics.length} topics →</a></p>}
+
+  <h2>How scrapability is tracked</h2>
+  <p>
+    A nightly GitHub Action probes every source with common LLM user agents
+    (<code>GPTBot</code>, <code>ClaudeBot</code>, <code>PerplexityBot</code>, plain <code>curl</code>)
+    and tags each one:
+  </p>
+  <ul>
+    <li><span class="pill ok">ok</span> — fetches cleanly as text or JSON.</li>
+    <li><span class="pill warn">js_required</span> — content only renders after JavaScript execution.</li>
+    <li><span class="pill warn">rate_limited</span> — returned 429 on probe.</li>
+    <li><span class="pill bad">blocked</span> — 403 or Cloudflare challenge; keep for humans, not for LLM scraping.</li>
+    <li><span class="pill bad">paywalled</span> — full content behind a paywall.</li>
+    <li><span class="pill warn">document_changed</span> — canonical PDF hash drifted; needs review.</li>
+  </ul>
+
+  <h2>Contribute</h2>
+  <p>
+    Open a pull request adding a YAML file under <code>sources/&lt;topic&gt;/</code>. See
+    <a href="https://github.com/" rel="noopener">CONTRIBUTING.md</a> for the schema
+    and the rubric for the required <code>why_better</code> justification.
+  </p>
+</Base>

@@ -1,0 +1,14 @@
+name: "Svelte Docs — llms.txt"
+url: https://svelte.dev/llms.txt
+type: llms_txt
+topics: [developer, svelte, framework-docs, llms-txt]
+description: Svelte's curated map of documentation pages optimized for LLM consumption.
+why_better: |
+  Instead of scraping all of svelte.dev, follow the maintainer-endorsed
+  map that already omits navigation and marketing content. Points at the
+  precise markdown for current Svelte and SvelteKit APIs.
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0

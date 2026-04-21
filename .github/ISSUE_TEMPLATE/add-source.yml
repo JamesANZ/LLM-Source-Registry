@@ -1,0 +1,86 @@
+name: Propose a new source
+description: Suggest a high-quality data source to add to the registry.
+title: "Add source: <name>"
+labels: [new-source]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Source name
+      placeholder: "Congress.gov API"
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Canonical URL
+      description: Docs page for APIs, direct file URL for PDFs/datasets.
+      placeholder: "https://api.congress.gov/"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - api
+        - scrapable_page
+        - dataset
+        - rss
+        - mcp
+        - llms_txt
+        - pdf
+        - document
+    validations:
+      required: true
+
+  - type: dropdown
+    id: auth
+    attributes:
+      label: Auth requirement
+      description: >
+        This registry prefers no-auth sources by default. If there's a
+        credentialed source AND a no-auth equivalent, add the no-auth one first.
+      options:
+        - "none (preferred)"
+        - api_key_free
+        - api_key_paid
+        - oauth
+    validations:
+      required: true
+
+  - type: input
+    id: topics
+    attributes:
+      label: Topics (comma-separated, kebab-case)
+      placeholder: "us-legislation, congress, tariffs"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_better
+    attributes:
+      label: Why does this beat a generic web search?
+      description: This becomes the `why_better` field. Be specific. Minimum 20 characters.
+      placeholder: >
+        Primary source with structured JSON; news articles paraphrase bills
+        and often misrepresent section numbers. Covers every bill since 1973.
+    validations:
+      required: true
+
+  - type: textarea
+    id: query_examples
+    attributes:
+      label: Example queries (optional)
+      description: One per line. Include {KEY} placeholders where needed.
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Sanity checks
+      options:
+        - label: The URL returns content to a plain `curl` (not behind Cloudflare).
+        - label: I'm not submitting a news outlet, blog, or SEO-optimised summary of a primary source.
+        - label: I've searched existing sources to avoid duplicates.

@@ -1,0 +1,42 @@
+name: Validate PR
+
+on:
+  pull_request:
+    paths:
+      - "sources/**"
+      - "src/content.config.ts"
+      - "src/lib/schema.ts"
+      - "scripts/**"
+      - ".github/workflows/validate-pr.yml"
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate source YAML against schema
+        run: npm run validate
+
+      - name: Astro content-collection sync (deeper validation)
+        run: npx astro sync
+
+      - name: Probe new/changed URLs for reachability
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: npx tsx scripts/probe-changed.ts
+
+      - name: Full static build
+        run: npm run build

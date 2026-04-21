@@ -1,0 +1,60 @@
+name: Nightly verify + retire
+
+on:
+  schedule:
+    - cron: "17 3 * * *" # 03:17 UTC every night
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify scrapability for every source
+        run: npm run verify
+
+      - name: Commit verification updates (direct to main)
+        run: |
+          git config user.name "llm-source-registry-bot"
+          git config user.email "bot@llm-source-registry.local"
+          if [ -n "$(git status --porcelain sources/)" ]; then
+            git add sources/
+            git commit -m "chore(verify): nightly scrapability update"
+            git push
+          else
+            echo "No verification changes to commit."
+          fi
+
+      - name: Run retirement policy
+        run: npm run retire
+
+      - name: Open retirement PR if any sources moved to _retired/
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore(retire): auto-retire failing sources"
+          title: "Auto-retire failing sources"
+          body: |
+            Sources in this PR have failed the nightly scrapability probe for
+            the number of consecutive runs required by the retirement policy
+            (see CONTRIBUTING.md).
+
+            They have been moved to `sources/_retired/` rather than deleted.
+            Merge this PR to remove them from the live site, or close the PR
+            and move the files back out of `_retired/` to keep them.
+          branch: chore/retire-${{ github.run_id }}
+          delete-branch: true
+          labels: automated, retirement

@@ -1,0 +1,17 @@
+name: "Open-Meteo"
+url: https://open-meteo.com/en/docs
+api_base: https://api.open-meteo.com/v1
+type: api
+topics: [weather, forecasting, global-weather]
+description: Free weather API aggregating national weather services worldwide — hourly and daily forecasts, historical reanalysis.
+why_better: |
+  Global coverage without an API key, well-documented query parameters,
+  and a single consistent schema across dozens of national providers.
+  Much easier for an LLM to call than juggling country-specific APIs.
+query_examples:
+  - https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m
+auth: none
+added_by: "@seed"
+verification:
+  status: unknown
+  consecutive_failures: 0
