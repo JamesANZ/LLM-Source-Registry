@@ -1,8 +1,12 @@
-name: "Congress.gov API"
+name: Congress.gov API
 url: https://api.congress.gov/
 api_base: https://api.congress.gov/v3
 type: api
-topics: [us-legislation, congress, tariffs, federal-law]
+topics:
+  - us-legislation
+  - congress
+  - tariffs
+  - federal-law
 description: Official bill, vote, member, and committee data from the U.S. Congress.
 why_better: |
   Primary source with structured JSON. News articles paraphrase bills and
@@ -15,5 +19,8 @@ query_examples:
 auth: api_key_free
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: blocked
+  last_checked: 2026-04-22T04:19:19.354Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: application/json
+  consecutive_failures: 1

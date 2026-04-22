@@ -1,7 +1,12 @@
-name: "GENIUS Act — Enrolled Bill (full text)"
+name: GENIUS Act — Enrolled Bill (full text)
 url: https://www.congress.gov/118/bills/hr4766/BILLS-118hr4766enr.pdf
 type: pdf
-topics: [us-legislation, stablecoins, crypto, genius-act, financial-regulation]
+topics:
+  - us-legislation
+  - stablecoins
+  - crypto
+  - genius-act
+  - financial-regulation
 description: The official enrolled text of the GENIUS Act as passed by Congress.
 why_better: |
   Canonical primary source. News articles summarize or misquote specific
@@ -9,7 +14,7 @@ why_better: |
   answering questions about stablecoin regulation.
 document:
   document_type: bill
-  publisher: "U.S. Congress"
+  publisher: U.S. Congress
   issued: 2025-07-18
   jurisdiction: US-federal
   canonical: true
@@ -17,5 +22,9 @@ document:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: url_dead
+  last_checked: 2026-04-22T04:19:20.503Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html; charset=UTF-8
+  consecutive_failures: 1
+  sha256: 29de598528c75bd985dbbfde1744fb6260de3c5b0b00dfe2b54edde91489e424

@@ -1,8 +1,12 @@
-name: "PubMed E-utilities"
+name: PubMed E-utilities
 url: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 api_base: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
 type: api
-topics: [science, medicine, biomedical-research, ncbi]
+topics:
+  - science
+  - medicine
+  - biomedical-research
+  - ncbi
 description: NCBI's programmatic interface to PubMed, PMC, Gene, GenBank, and dozens of other biomedical databases.
 why_better: |
   Primary biomedical literature index. Health journalism is notoriously
@@ -13,5 +17,9 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:18.236Z
+  user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+  content_type: text/html
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:18.236Z

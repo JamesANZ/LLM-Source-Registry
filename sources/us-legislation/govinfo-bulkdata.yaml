@@ -1,7 +1,11 @@
-name: "GovInfo Bulk Data Repository"
+name: GovInfo Bulk Data Repository
 url: https://www.govinfo.gov/bulkdata
 type: dataset
-topics: [us-legislation, federal-law, bulk-data, datasets]
+topics:
+  - us-legislation
+  - federal-law
+  - bulk-data
+  - datasets
 description: Bulk XML/PDF downloads for the Congressional Record, bills, Public Laws, the U.S. Code, and CFR.
 why_better: |
   For analysis over entire corpora (e.g., "find every bill mentioning a
@@ -10,5 +14,9 @@ why_better: |
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:18.752Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: application/xml
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:18.752Z

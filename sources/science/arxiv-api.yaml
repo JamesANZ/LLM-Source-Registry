@@ -1,8 +1,13 @@
-name: "arXiv API"
+name: arXiv API
 url: https://info.arxiv.org/help/api/index.html
 api_base: http://export.arxiv.org/api
 type: api
-topics: [science, research, preprints, physics, machine-learning]
+topics:
+  - science
+  - research
+  - preprints
+  - physics
+  - machine-learning
 description: Search and metadata API for 2M+ preprints in physics, math, CS, quantitative biology, and more.
 why_better: |
   Primary source for cutting-edge scientific research. Pop-sci articles lag
@@ -13,5 +18,8 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: server_error
+  last_checked: 2026-04-22T04:19:19.627Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html
+  consecutive_failures: 1

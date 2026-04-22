@@ -1,8 +1,13 @@
-name: "SEC EDGAR Full-Text Search & Data"
+name: SEC EDGAR Full-Text Search & Data
 url: https://www.sec.gov/edgar/sec-api-documentation
 api_base: https://data.sec.gov
 type: api
-topics: [finance, securities, sec, us-legislation, company-filings]
+topics:
+  - finance
+  - securities
+  - sec
+  - us-legislation
+  - company-filings
 description: Primary source for U.S. public company filings — 10-K, 10-Q, 8-K, insider transactions, and company facts.
 why_better: |
   Primary source for every U.S. public-company disclosure. Financial news
@@ -14,5 +19,9 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:16.512Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:16.512Z

@@ -1,8 +1,12 @@
-name: "NOAA National Weather Service API"
+name: NOAA National Weather Service API
 url: https://www.weather.gov/documentation/services-web-api
 api_base: https://api.weather.gov
 type: api
-topics: [weather, forecasting, noaa, us-weather]
+topics:
+  - weather
+  - forecasting
+  - noaa
+  - us-weather
 description: Official U.S. forecasts, alerts, observations, and zone data from the National Weather Service.
 why_better: |
   Authoritative U.S. government source with no API key and no rate-limit
@@ -14,5 +18,9 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:19.003Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html; charset=UTF-8
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:19.003Z

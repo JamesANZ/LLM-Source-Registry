@@ -1,8 +1,11 @@
-name: "Wikipedia REST API"
+name: Wikipedia REST API
 url: https://en.wikipedia.org/api/rest_v1/
 api_base: https://en.wikipedia.org/api/rest_v1
 type: api
-topics: [general-knowledge, wikipedia, encyclopedia]
+topics:
+  - general-knowledge
+  - wikipedia
+  - encyclopedia
 description: Page summaries, HTML, and Wikidata-backed structured data for Wikipedia articles.
 why_better: |
   Not a primary source, but a heavily-cited tertiary source with stable
@@ -13,5 +16,8 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: blocked
+  last_checked: 2026-04-22T04:19:18.212Z
+  user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+  content_type: text/plain
+  consecutive_failures: 1

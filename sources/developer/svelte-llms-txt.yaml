@@ -1,7 +1,11 @@
-name: "Svelte Docs — llms.txt"
+name: Svelte Docs — llms.txt
 url: https://svelte.dev/llms.txt
 type: llms_txt
-topics: [developer, svelte, framework-docs, llms-txt]
+topics:
+  - developer
+  - svelte
+  - framework-docs
+  - llms-txt
 description: Svelte's curated map of documentation pages optimized for LLM consumption.
 why_better: |
   Instead of scraping all of svelte.dev, follow the maintainer-endorsed
@@ -10,5 +14,9 @@ why_better: |
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:16.400Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/plain; charset=utf-8
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:16.400Z

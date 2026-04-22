@@ -1,7 +1,11 @@
-name: "MCP Fetch Server (reference implementation)"
+name: MCP Fetch Server (reference implementation)
 url: https://github.com/modelcontextprotocol/servers/tree/main/src/fetch
 type: mcp
-topics: [developer, mcp, web-fetching, reference-implementation]
+topics:
+  - developer
+  - mcp
+  - web-fetching
+  - reference-implementation
 description: Official Model Context Protocol server that fetches URLs and returns clean content to an LLM client.
 why_better: |
   For agents that already speak MCP, invoking a verified server is
@@ -10,5 +14,9 @@ why_better: |
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
+  status: ok
+  last_checked: 2026-04-22T04:19:16.888Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html; charset=utf-8
   consecutive_failures: 0
+  last_successful_check: 2026-04-22T04:19:16.888Z

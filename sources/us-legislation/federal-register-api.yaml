@@ -1,8 +1,12 @@
-name: "Federal Register API"
+name: Federal Register API
 url: https://www.federalregister.gov/developers/documentation/api/v1
 api_base: https://www.federalregister.gov/api/v1
 type: api
-topics: [us-legislation, federal-law, regulations, executive-orders]
+topics:
+  - us-legislation
+  - federal-law
+  - regulations
+  - executive-orders
 description: Daily journal of the U.S. federal government — rules, proposed rules, notices, and executive orders.
 why_better: |
   Primary source for federal regulations and executive orders. No API key
@@ -14,5 +18,8 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: url_dead
+  last_checked: 2026-04-22T04:19:20.335Z
+  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  content_type: text/html
+  consecutive_failures: 1

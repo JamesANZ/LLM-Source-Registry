@@ -1,8 +1,12 @@
-name: "FRED — Federal Reserve Economic Data API"
+name: FRED — Federal Reserve Economic Data API
 url: https://fred.stlouisfed.org/docs/api/fred/
 api_base: https://api.stlouisfed.org/fred
 type: api
-topics: [finance, economics, macro-data, federal-reserve]
+topics:
+  - finance
+  - economics
+  - macro-data
+  - federal-reserve
 description: 800,000+ U.S. and international economic time series from 100+ sources, maintained by the St. Louis Fed.
 why_better: |
   Authoritative numerical source for macroeconomic indicators (CPI, GDP,
@@ -13,5 +17,8 @@ query_examples:
 auth: api_key_free
 added_by: "@seed"
 verification:
-  status: unknown
-  consecutive_failures: 0
+  status: blocked
+  last_checked: 2026-04-22T04:19:18.336Z
+  user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+  content_type: text/html
+  consecutive_failures: 1
