@@ -18,7 +18,7 @@ auth: none
 added_by: "@seed"
 verification:
   status: url_dead
-  last_checked: 2026-04-25T04:13:16.715Z
+  last_checked: 2026-04-26T04:25:47.624Z
   user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
   content_type: text/html
-  consecutive_failures: 4
+  consecutive_failures: 5
