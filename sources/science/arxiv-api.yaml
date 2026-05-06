@@ -18,8 +18,8 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: server_error
-  last_checked: 2026-05-05T04:23:41.750Z
-  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  status: rate_limited
+  last_checked: 2026-05-06T04:28:58.289Z
+  user_agent_tested: curl/8.4.0
   content_type: text/html
-  consecutive_failures: 14
+  consecutive_failures: 15
