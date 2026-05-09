@@ -16,8 +16,8 @@ query_examples:
 auth: none
 added_by: "@seed"
 verification:
-  status: rate_limited
-  last_checked: 2026-05-08T04:22:44.574Z
-  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
-  content_type: text/html; charset=utf-8
-  consecutive_failures: 17
+  status: blocked
+  last_checked: 2026-05-09T04:26:05.456Z
+  user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
+  content_type: text/plain
+  consecutive_failures: 18
