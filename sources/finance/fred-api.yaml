@@ -18,7 +18,7 @@ auth: api_key_free
 added_by: "@seed"
 verification:
   status: blocked
-  last_checked: 2026-05-09T04:26:05.702Z
+  last_checked: 2026-05-10T04:35:37.440Z
   user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
   content_type: text/html
-  consecutive_failures: 18
+  consecutive_failures: 19
