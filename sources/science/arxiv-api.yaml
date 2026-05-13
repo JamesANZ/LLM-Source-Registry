@@ -19,7 +19,7 @@ auth: none
 added_by: "@seed"
 verification:
   status: rate_limited
-  last_checked: 2026-05-12T04:29:44.138Z
-  user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
+  last_checked: 2026-05-13T04:34:23.526Z
+  user_agent_tested: curl/8.4.0
   content_type: text/html
-  consecutive_failures: 21
+  consecutive_failures: 22
