@@ -18,8 +18,8 @@ auth: none
 added_by: "@seed"
 verification:
   status: ok
-  last_checked: 2026-05-17T04:40:30.430Z
+  last_checked: 2026-05-18T04:46:18.834Z
   user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
   content_type: text/html
   consecutive_failures: 0
-  last_successful_check: 2026-05-17T04:40:30.430Z
+  last_successful_check: 2026-05-18T04:46:18.834Z
