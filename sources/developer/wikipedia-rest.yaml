@@ -17,7 +17,7 @@ auth: none
 added_by: "@seed"
 verification:
   status: blocked
-  last_checked: 2026-05-18T04:46:19.629Z
+  last_checked: 2026-05-19T04:42:00.584Z
   user_agent_tested: Mozilla/5.0 (compatible; ClaudeBot/1.0; +claudebot@anthropic.com)
   content_type: text/plain
-  consecutive_failures: 27
+  consecutive_failures: 28
