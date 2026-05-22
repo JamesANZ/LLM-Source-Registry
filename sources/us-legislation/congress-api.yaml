@@ -20,7 +20,7 @@ auth: api_key_free
 added_by: "@seed"
 verification:
   status: blocked
-  last_checked: 2026-05-21T04:47:31.771Z
+  last_checked: 2026-05-22T04:42:46.132Z
   user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
   content_type: application/json
-  consecutive_failures: 30
+  consecutive_failures: 31
