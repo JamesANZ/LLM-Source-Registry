@@ -28,3 +28,6 @@ verification:
   content_type: text/html; charset=UTF-8
   consecutive_failures: 34
   sha256: 24bd1d6f8574e5152bbc47aa066f7d61dc3fde48c6e87ce3719b720644a5bee6
+  notes: "Auto-retired: url_dead after 34 consecutive failures."
+retired_at: 2026-05-25T04:50:09.014Z
+retired_reason: url_dead
