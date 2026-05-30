@@ -22,3 +22,6 @@ verification:
   user_agent_tested: Mozilla/5.0 (compatible; GPTBot/1.2; +https://openai.com/gptbot)
   content_type: text/html
   consecutive_failures: 39
+  notes: "Auto-retired: url_dead after 39 consecutive failures."
+retired_at: 2026-05-30T04:37:45.420Z
+retired_reason: url_dead
